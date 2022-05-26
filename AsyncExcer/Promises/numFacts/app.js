@@ -37,7 +37,6 @@ getMultipleNums(1, 3)
 // PART 3 MANY FACTS
 let getManyFactsAboutFive = (num) => {
 	let url = 'http://numbersapi.com/5'
-	let ul = document.getElementById('manyFacts')
 	let listOfPromises = []
 	for (let i = 0; i < num; i++) {
 		listOfPromises.push(axios.get(`${url}`))
