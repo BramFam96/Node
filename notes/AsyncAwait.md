@@ -198,19 +198,21 @@ The solution is to run these in parellel:
 async function getThreePokemans() {
 	let baseUrl = 'example'
 	try {
-    // Do not await these calls at instantiation:
+
+  // Do not await these calls at instantiation:
 		let p1Promise = axios.get(`${baseUrl}/1`)
 		let p2Promise = axios.get(`${baseUrl}/2`)
 		let p3Promise = axios.get(`${baseUrl}/3`)
 
-    let p1 =  await p1Promise;
+    let p1 = await p1Promise;
     let p2 = await p2Promise;
     let p3 = await p3Promise;
 
 		console.log(p1.data.name)
     console.log(p2.data.name)
     console.log(p3.data.name)
-	} catch (e) {
+
+  } catch (e) {
 		console.log('Error in getThreePokemans:', e)
 	}
   getThreePokemans()
