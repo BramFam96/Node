@@ -1,0 +1,22 @@
+{
+  "name": "test-one",
+  "version": "1.0.0",
+  "description": "first node init",
+  "main": "test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BramFam96/Node.git"
+  },
+  "author": "Matt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BramFam96/Node/issues"
+  },
+  "homepage": "https://github.com/BramFam96/Node#readme",
+  "dependencies": {
+    "axios": "^0.27.2"
+  }
+}
