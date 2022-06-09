@@ -171,13 +171,24 @@ Err handling is good and all, but we need to figure out how to debug once we're 
 Aside from console.log - how do we debug?  
 1) Chrome Dev Tools
    - Node does not run in the client. Instead we use *--inspect-brk* flag in linux;
+   - This flag will place a break point on the first line of our code
 ```s 
-node --inpsect-brk file.js
+nodemon --inpsect-brk file.js
 
 # Debug listening on etc;
-# For help see docs:
-# Launches a REPL
+# For help see docs
 ```
 From here we return to our client. In dev-tools there will be a node logo in the top right  
 Clicking this opens a new dev-tools window with our node code  
-From here we can easily step-through our code
+From here we can easily step-through our code  
+### Breaking where we choose
+--inspect-brk is convenient, but say we're trying to break out a particular func to inspect it.  
+We don't want to step through our entire codebase.  
+We can use --inspect without adding -brk:
+```s
+nodemon --inspect file.js
+```
+We use this in conjuction with the keyword **debugger** in our codebase.  
+**debugger** works just like *raise* in py.  
+Dev tools automatically opens
+when we hit the debugger line;
