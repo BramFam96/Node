@@ -166,10 +166,71 @@ app.get('/showheaders', (req, res) => {
 	res.send(req.headers)
 })
 ```
+
 ## req.body
+
 req.body contains the data submitted on post requests
 However, it isn't as simple as the previous methods
+
 ```js
-app.post('new-data', (req,res) => {
-  app.send(req.body)
+app.post('/dummy-register', (req, res) => {
+	console.log(reg.body)
+	app.send(req.body)
 })
+```
+
+req.body is empty!  
+Express needs to be told to parse _JSON_ / _form data_
+
+```js
+// Top line of app.js
+const express = require('express')
+const app = express()
+// Heavy lifters! Parse both data types
+app.use(express.json())
+app.use(urlencoded({ extended: true }))
+
+// Now our we can view our req data
+app.post('/dummy-register', (req, res) => {
+	console.log(reg.body)
+	app.send(`Welcome, ${req.body.username}`)
+})
+```
+
+Don't forget to test this with insomnia instead of building a form!
+
+# Responding with JSON
+
+As a prelude to building our own JSON Api we'll review responses.
+All this can be found in [Candies](../demo/VideoCode/jsonApi.js)  
+When responding with data, we want to use res.json to ensure its type:
+
+```js
+const express = require('express')
+
+const app = express()
+
+app.use(express.json())
+// Imagine a real database contians something like:
+const CANDIES = [
+	{ name: 'snickers', qty: 43, price: 1.5 },
+	{ name: 'skittles', qty: 26, price: 0.99 },
+]
+// If we used res.send here, we would get html as a response type
+app.get('/candies', (req, res) => {
+	res.json(CANDIES)
+})
+app.listen(3000, () => {
+	console.log('Server running on port 3000')
+})
+```
+
+## status codes
+
+Currently, all of our routes respond with a 200 status code.  
+To manually set we use the status method on res:
+
+```js
+// status itself only configs code. We still need to send.
+res.status(201).json(CANDIES)
+```
