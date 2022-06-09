@@ -145,7 +145,7 @@ app.get('/users/:username', (req,res,next) => {
   }
 })
 app.use((err, req, res, next) => { 
-  let status = err.status || 500;
+  let status = err.status || 500 //Defaults to 500;
   let message = err.msg;
 
   // set the status and alert the user
@@ -155,3 +155,29 @@ app.use((err, req, res, next) => {
 });
 })
 ```
+## Custom 404
+For our api we can just return json  
+Just above our handler middleware:
+```js
+app.use((req,res,next) => {
+	const e = new ExpressError('Page not found',404);
+	next (e);
+	// Previous routes will skip this because it does not have an err param;
+	// If we call next() w/o and error in routes, we will move on to this use statement.
+})
+```
+## Debugging with Express
+Err handling is good and all, but we need to figure out how to debug once we're in the weeds!  
+Aside from console.log - how do we debug?  
+1) Chrome Dev Tools
+   - Node does not run in the client. Instead we use *--inspect-brk* flag in linux;
+```s 
+node --inpsect-brk file.js
+
+# Debug listening on etc;
+# For help see docs:
+# Launches a REPL
+```
+From here we return to our client. In dev-tools there will be a node logo in the top right  
+Clicking this opens a new dev-tools window with our node code  
+From here we can easily step-through our code
