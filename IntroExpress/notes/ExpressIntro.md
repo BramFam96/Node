@@ -211,7 +211,7 @@ const express = require('express')
 const app = express()
 
 app.use(express.json())
-// Imagine a real database contians something like:
+// Imagine a real database contains something like:
 const CANDIES = [
 	{ name: 'snickers', qty: 43, price: 1.5 },
 	{ name: 'skittles', qty: 26, price: 0.99 },
