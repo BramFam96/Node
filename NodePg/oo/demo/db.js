@@ -1,10 +1,13 @@
-/** Database for pg-oo */
+/** Database setup for cats. */
+const { Client } = require('pg')
+const pw = require('../../../pg-pw-secret')
 
-const pg = require("pg");
+let db = new Client({
+	database:
+		process.env.NODE_ENV === 'test' ? 'express_pg_oo_test' : 'express_pg_oo',
+	password: pw,
+})
 
-const db = new pg.Client("postgresql:///express_pg_oo");
+db.connect()
 
-db.connect();
-
-
-module.exports = db;
+module.exports = db
