@@ -69,7 +69,8 @@ describe('POST /login', function () {
       .post(`/login`)
       .send({ username: "test", password: "secret" });
     expect(response.statusCode).toBe(200);
-    expect(response.body).toEqual({ token: expect.any(String) });
+    // New 
+    expect(response.body).toEqual(expect.objectContaining({ token: expect.any(String) }));
   });
 
   test("fails with wrong password", async function () {

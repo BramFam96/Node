@@ -166,7 +166,7 @@ describe("GET /secret-admin w/o token", function () {
     expect(response.statusCode).toBe(401);
   });
 
-  test("fao;s with invalid token", async function () {
+  test("fails with invalid token", async function () {
     const response = await request(app)
       .get(`/secret-admin`)
       .send({ _token: "garbage" }); // invalid token!
